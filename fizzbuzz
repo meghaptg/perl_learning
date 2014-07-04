@@ -1,0 +1,23 @@
+  1 #!usr/bin/perl:q
+  2 use strict;
+  3 use warnings;
+  4 use feature ':5.12';
+  5 use Data::Dumper;
+  6 
+  7 my @given=(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+  8 
+  9 foreach my $number(@given)
+ 10 {
+ 11     if( $number % 3 == 0 && $number % 5 == 0 )
+ 12     {
+ 13         say "FIZZBUZZ $number";
+ 14 
+ 15     } elsif( $number % 3 == 0 )
+ 16     {
+ 17         say "FIZZ $number";
+ 18 
+ 19     } elsif( $number % 5 == 0 )
+ 20     {
+ 21         say "BUZZ";
+ 22     }
+ 23 }

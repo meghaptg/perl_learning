@@ -1,0 +1,41 @@
+  3 use warnings;
+  4 use feature ':5.12';
+  5 use Data::Dumper;
+  6 
+  7 
+  8 my %family1 = (
+  9      'mom'=>'mom1',
+ 10      'pop'=>'pop1',
+ 11      'vehicles' => ['car','cycle'],
+ 12 );
+ 13 
+ 14 my %family2 = (
+ 15      'mom'=>'mom2',
+ 16      'pop'=>'pop2',
+ 17      'vehicles' => ['bus','van'],
+ 18 );
+ 19 
+ 20 
+ 21 my $all = {
+ 22     allfamily => [\%fam1, \%fam2],
+ 23 };
+ 24 
+ 25 my $count=1;
+ 26 
+ 27 foreach my $family(@{$all->{allfamily}}) {
+ 28         say "family $count";
+ 29         say Dumper ( $family );
+ 30         foreach my $keys(keys %{$family}) {
+ 31 
+ 32                 if ( !ref ($family->{$keys}) ) {
+ 33                        say "xxx", $family->{$keys};
+ 34                        say " old key is $keys old value is $family->{$keys}";
+ 35                        $family->{$family->{$keys}} = $keys;
+ 36                        delete $family->{$keys};
+ 37                 }
+ 38         }
+ 39 
+ 40         say Dumper ( $family );
+ 41 }
+ 42 
+                                                                                                                     42,0-1        Bot

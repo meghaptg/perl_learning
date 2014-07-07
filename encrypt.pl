@@ -4,41 +4,34 @@ use warnings;
 use feature ':5.12';
 use Data::Dumper;
 
-my %hash=(1,'a',2,'b',3,'c',4,'d',5,'e',6,'f',7,'g',8,'h',9,'i',10,'j',11,'k',12,'l',13,'m',14,'n',15,'o',16,'p',17,'q',18,'r',19,'s',20,'t',21,'u',22,'v',23,'w',24,'x',25,'y',26,'z');
-say Dumper \%hash;
-my $data='megha';
-say "Data = $data ";
-my $key=0;
-my @s1;
-my $value=0;
-my @dec;
-my $p;
+my %encrypt;
 
-sub encrypt {
-    my @val1= split(undef,$data);
-    my $count=0;
-    say 'encryption';
-    foreach my $c1(@val1)  {
-            print "$c1 -> ";
-            while (my ($k, $v) = each %hash) {
-                if ( $v eq $c1 ) {
-                $dec[$count]=$k;
-                print "$k\n";
-                $count++;    
-                } 
-            }
-    }   
-} 
-
-
-sub decrypt {
-    say 'decryption';
-    foreach my $n(@dec)  {
-        $p = $hash{$n};
-        print "$n -> $p\n";
-    }
+my $count = 1;
+foreach my $char ( 'a' .. 'z' ) {
+   $encrypt{$char} = $count ++;
 }
 
-encrypt();
-#say Dumper \@dec;
-decrypt();
+say Dumper \%encrypt;
+
+my $strint_to_encrypt='megha';
+
+my @encrypted_string;
+foreach my $char_str ( split //,lc $strint_to_encrypt ) {
+     if ( exists ( $encrypt{$char_str} ) ) {
+            push @encrypted_string , $encrypt{$char_str};
+     }
+}
+
+my $str_to_decrypt = join '#',@encrypted_string;
+
+
+## to decrypt
+
+my @decrypt = split /#/,$str_to_decrypt;
+
+say Dumper \@decrypt;
+
+my %decrypt = reverse %encrypt;
+foreach my $char_dec ( @decrypt ) {
+        say $char_dec . "=" . $decrypt{$char_dec} ;
+}

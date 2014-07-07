@@ -4,32 +4,10 @@ use warnings;
 use feature ':5.12';
 use Data::Dumper;
 
-=comment
-my @letters=('a' .. 'z');
-#say Dumper \@letters;
-my @numbers=(1 .. 26);
-#say Dumper \@numbers;
-my $s1=0;
-my $s2=0;
-my $data= 'ab';
-
-sub encrypt {
-    my @val1= split(undef,$data);
-    foreach my $c1(@val1)  {
-        print "$c1\n";
-        $s1= grep
-        #my %len1=map { $c1=> length $c1 } @numbers;
-        #print "$len1{$c1}\n";
-    }
-}
-=cut
-
-#my %hash(even) =('a'..'z');
-#my %hash(odd) =(1 .. 26);
-my %hash=(1,'a',2,'b');
+my %hash=(1,'a',2,'b',3,'c',4,'d',5,'e',6,'f',7,'g',8,'h',9,'i',10,'j',11,'k',12,'l',13,'m',14,'n',15,'o',16,'p',17,'q',18,'r',19,'s',20,'t',21,'u',22,'v',23,'w',24,'x',25,'y',26,'z');
 say Dumper \%hash;
-my $data='ab';
-say "$data";
+my $data='megha';
+say "Data = $data ";
 my $key=0;
 my @s1;
 my $value=0;
@@ -39,43 +17,28 @@ my $p;
 sub encrypt {
     my @val1= split(undef,$data);
     my $count=0;
+    say 'encryption';
     foreach my $c1(@val1)  {
             print "$c1 -> ";
-           # $s1[$count]=$c1;
-           # $count++;
-=comment
-            $key= $hash{$c1};
-            print "$key\n";
-    while (($key,$value)=each %hash)  
-            if ($value eq $c1) {
-            my $key=$hash{$c1};
-            print "$key";
-    }
-say Dumper \@s1
-=cut
             while (my ($k, $v) = each %hash) {
                 if ( $v eq $c1 ) {
                 $dec[$count]=$k;
                 print "$k\n";
                 $count++;    
-            } 
-            
-}
-}
+                } 
+            }
+    }   
 } 
-say Dumper \@dec;
 
 
 sub decrypt {
-   # while (my ($k1, $v1)=each %hash)  {
-   # my $p= %hash{$k};
-   foreach my $n(@dec)  {
+    say 'decryption';
+    foreach my $n(@dec)  {
         $p = $hash{$n};
-        print "$p\n";
+        print "$n -> $p\n";
     }
 }
 
-
 encrypt();
-say Dumper \@dec;
+#say Dumper \@dec;
 decrypt();

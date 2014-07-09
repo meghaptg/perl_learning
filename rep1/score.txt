@@ -1,4 +1,0 @@
-tom,maths,60
-bob,science,76
-tom,science,70
-bob,maths,90

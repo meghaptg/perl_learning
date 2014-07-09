@@ -17,12 +17,20 @@ my %groups_to_foods = (
 );
 say Dumper \%groups_to_foods;  
 my $search = 'tofu';
+
+if ( grep /tofu/, keys %{$groups_to_foods{vegetarian}} ) {
+        say " found tofu";
+}
     foreach my $check(keys %{$groups_to_foods{carbs}})  {
         $check = $groups_to_foods{carbs}{$check};
         if (lc($check) eq $search)  {
         say "YES"; 
         }
     }
+
+my $times = scalar ( keys %{$groups_to_foods{vegetarian}});
+
+say " times $times ";
 my $num=0;
 foreach my $item(keys %{$groups_to_foods{vegetarian}})  {  
         $num++;

@@ -1,6 +1,6 @@
 #!usr/bin/perl
 use BasicMath qw/ add difference/;
-#use warnings;
+use warnings;
 use strict;
 
 add(5,2);

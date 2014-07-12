@@ -14,24 +14,27 @@ sub get_lines{
         print $self->path,"\n";
         print $self->file_name,"\n";
         my($file, $dir, $ext) = fileparse($self->file_name,qr/\.[^.]*/);
+        my $count = 0;
         if($ext eq '.txt') {
-        open(my $fh, "<", $self->file_name)
-        or die "cannot open > $self->file_name: $!";
-        my $count=0;
-        print"Reading the file\n";
-        while(my $row = <$fh>) {
-               chomp $row;
-               print $row,"\n";
-               $count++;
-        } 
-        print "num of lines is ",$count,"\n";
-        return $count;
+                open(my $fh, "<", $self->file_name)
+                or die "cannot open > $self->file_name: $!"; 
+
+                print"Reading the file\n";
+
+                while(my $row = <$fh>) {
+                       chomp $row;
+                       print $row,"\n";
+                       $count++;
+                } 
+                print "num of lines is ",$count,"\n";
+                
         } else {
                 print "not a file\n";
         }
+        return $count;
 }
 
-sub isdirectory{
+  sub isdirectory{
         my $self = shift;
         my $fname = $self->path."/".$self->file_name;
         print $fname,"\n";
@@ -42,13 +45,16 @@ sub isdirectory{
             print"False\n";
         } else {
             print"True\n";
+            my @file;
+            my $count=0;
             opendir (DIR, $dir) or die $!;
-            while (my $file = readdir(DIR)) {
-                 print "$file\n";
-           } 
-
-}
-}
+            while ($file[$count] = readdir(DIR)) {
+                 print "$file[$count]\n";
+                 $count++;
+            }  
+            return @file;
+        }
+  }
 }
 1; 
 
